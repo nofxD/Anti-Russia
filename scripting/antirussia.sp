@@ -37,7 +37,7 @@ public Plugin myinfo =
     url = "https://steamcommunity.com/id/nofxD"
 };
 
-public void OnClientPostAdminCheck(int client)
+public bool OnClientConnect(int client, char[] rejectmsg, int maxlen)
 {
     char ip[15];
     char country[45];
@@ -45,10 +45,10 @@ public void OnClientPostAdminCheck(int client)
     GetClientIP(client, ip, sizeof(ip));
     GeoipCountry(ip, country, sizeof(country));
 
-    PrintToConsoleAll("Country: %s", country);
-
     if (StrEqual("Russian Federation", country))
     {
-        KickClient(client, "Free Ukraine / Свободная Украина!");
+       strcopy(rejectmsg, maxlen, "Free Ukraine / Свободная Украина!");
+       return false;
     }
+    return true;
 }
