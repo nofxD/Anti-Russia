@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 #include <sourcemod>
-#include <cstrike>
 #include <geoip>
 
 #pragma newdecls required
