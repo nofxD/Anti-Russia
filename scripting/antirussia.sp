@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 #include <sourcemod>
+#include <cstrike>
 #include <geoip>
 
 #pragma newdecls required
@@ -36,7 +37,7 @@ public Plugin myinfo =
     url = "https://steamcommunity.com/id/nofxD"
 };
 
-public bool OnClientConnect(int client, char[] rejectmsg, int maxlen)
+public void OnClientPostAdminCheck(int client)
 {
     char ip[15];
     char country[45];
@@ -44,10 +45,10 @@ public bool OnClientConnect(int client, char[] rejectmsg, int maxlen)
     GetClientIP(client, ip, sizeof(ip));
     GeoipCountry(ip, country, sizeof(country));
 
-    if (StrEqual("Russia", country))
+    PrintToConsoleAll("Country: %s", country);
+
+    if (StrEqual("Russian Federation", country))
     {
-        strcopy(rejectmsg, maxlen, "Free Ukraine / Свободная Украина!");
-        return false;
+        KickClient(client, "Free Ukraine / Свободная Украина!");
     }
-    return true;
 }
