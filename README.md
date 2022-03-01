@@ -1,2 +1,2 @@
 # [CS:GO] Anti-Russia
-System that blocks all connections from Russia.
+Simple System that blocks all connections from Russia.
