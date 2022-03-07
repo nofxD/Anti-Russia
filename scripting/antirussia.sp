@@ -44,7 +44,7 @@ public bool OnClientConnect(int client, char[] rejectmsg, int maxlen)
     GetClientIP(client, ip, sizeof(ip));
     GeoipCountry(ip, country, sizeof(country));
 
-    if (StrEqual("Russian Federation", country))
+    if (StrEqual("Russian Federation", country) || StrEqual("Belarus", country))
     {
        strcopy(rejectmsg, maxlen, "Free Ukraine / Свободная Украина!");
        return false;
