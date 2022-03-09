@@ -50,10 +50,11 @@ public bool OnClientConnect(int client, char[] rejectmsg, int maxlen)
     char country[45];
     char message[512];
 
-    g_Message.GetString(message, sizeof(message));
     GetClientIP(client, ip, sizeof(ip));
     GeoipCountry(ip, country, sizeof(country));
-
+    
+    g_Message.GetString(message, sizeof(message));
+    
     if (StrEqual("Russian Federation", country) || StrEqual("Belarus", country))
     {
         strcopy(rejectmsg, maxlen, message);
